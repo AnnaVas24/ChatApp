@@ -19,6 +19,7 @@
 		511E083727B7EC770063EE15 /* UIImagaView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511E083627B7EC770063EE15 /* UIImagaView + Extension.swift */; };
 		511E083B27B7FC1A0063EE15 /* ButtonFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511E083A27B7FC1A0063EE15 /* ButtonFormView.swift */; };
 		511E083D27B7FDC00063EE15 /* StackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511E083C27B7FDC00063EE15 /* StackView + Extension.swift */; };
+		511E083F27B8033D0063EE15 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511E083E27B8033D0063EE15 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		511E083627B7EC770063EE15 /* UIImagaView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagaView + Extension.swift"; sourceTree = "<group>"; };
 		511E083A27B7FC1A0063EE15 /* ButtonFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFormView.swift; sourceTree = "<group>"; };
 		511E083C27B7FDC00063EE15 /* StackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Extension.swift"; sourceTree = "<group>"; };
+		511E083E27B8033D0063EE15 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				511E081A27B6B0E00063EE15 /* AppDelegate.swift */,
 				511E081C27B6B0E00063EE15 /* SceneDelegate.swift */,
 				511E081E27B6B0E00063EE15 /* AuthViewController.swift */,
+				511E083E27B8033D0063EE15 /* SignUpViewController.swift */,
 				511E083927B7FBA20063EE15 /* Extensions */,
 				511E082327B6B0E10063EE15 /* Assets.xcassets */,
 				511E082527B6B0E10063EE15 /* LaunchScreen.storyboard */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				511E083F27B8033D0063EE15 /* SignUpViewController.swift in Sources */,
 				511E083727B7EC770063EE15 /* UIImagaView + Extension.swift in Sources */,
 				511E083127B7EC3B0063EE15 /* UIFont + Extension.swift in Sources */,
 				511E081F27B6B0E00063EE15 /* AuthViewController.swift in Sources */,
