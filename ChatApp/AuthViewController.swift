@@ -27,6 +27,7 @@ class AuthViewController: UIViewController {
     
 }
 
+// MARK: - Setup constraints
 extension AuthViewController {
     private func setupConstraints() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false

@@ -1,65 +1,60 @@
 //
-//  SignUpViewController.swift
+//  LoginViewController.swift
 //  ChatApp
 //
-//  Created by Vasichko Anna on 12.02.2022.
+//  Created by Vasichko Anna on 13.02.2022.
 //
 
 import UIKit
 
-class SignUpViewController: UIViewController {
-    
-    let welcomeLabel = UILabel(text: "Glad to see you!", font: .arial26())
+class LoginViewController: UIViewController {
+
+    let welcomeLabel = UILabel(text: "Welcome back!", font: .arial26())
+    let loginWithLabel = UILabel(text: "Login with")
+    let orLabel = UILabel(text: "Or")
     let emailLabel = UILabel(text: "Email")
     let passwordLabel = UILabel(text: "Password")
-    let confirmPassLabel = UILabel(text: "Confirm password")
-    let alreadyLabel = UILabel(text: "Already have an account?")
+    let needLabel = UILabel(text: "Need an account?")
     
-    let signUpButton = UIButton(title: "Sign Up", titleColor: .white, backgroundColor: .buttonBlack(), isShadow: false)
-    let loginButton: UIButton = {
+    let googleButton = UIButton(title: "Google", titleColor: .black, backgroundColor: .white, isShadow: true)
+    let emailTF = OneLineTextFild(font: .arial20())
+    let passwordTF = OneLineTextFild(font: .arial20())
+    let loginButton = UIButton(title: "Login", titleColor: .white, backgroundColor: .buttonBlack(), isShadow: false)
+    let signUpButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.buttonRed(), for: .normal)
         button.titleLabel?.font = .arial20()
         return button
     }()
-    
-    let emailTF = OneLineTextFild(font: .arial20())
-    let passwordTF = OneLineTextFild(font: .arial20())
-    let confirmPasswordTF = OneLineTextFild(font: .arial20())
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .mainWhite()
-        
-        
-        
-        setupConstraints()
-
+        setupConstrains()
     }
-
+    
 }
 // MARK: - Setup Constraits
-extension SignUpViewController {
-    private func setupConstraints() {
+extension LoginViewController {
+    private func setupConstrains(){
+        let loginWithView = ButtonFormView(label: loginWithLabel, button: googleButton)
         let emailStackView = UIStackView(arrangeSubviews: [emailLabel,emailTF], axis: .vertical, spacing: 0)
         let passwordStackView = UIStackView(arrangeSubviews: [passwordLabel, passwordTF], axis: .vertical, spacing: 0)
-        let confirmPassStackView = UIStackView(arrangeSubviews: [confirmPassLabel, confirmPasswordTF], axis: .vertical, spacing: 0)
-        
-        signUpButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
+        loginButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         let stackView = UIStackView(arrangeSubviews: [
+            loginWithView,
+            orLabel,
             emailStackView,
             passwordStackView,
-            confirmPassStackView,
-            signUpButton
+            loginButton
         ],
                                     axis: .vertical,
                                     spacing: 40)
-        
-        loginButton.contentHorizontalAlignment = .leading
-        let bottomStackView = UIStackView(arrangeSubviews: [alreadyLabel,loginButton], axis: .horizontal, spacing: 20)
+        signUpButton.contentHorizontalAlignment = .leading
+        let bottomStackView = UIStackView(arrangeSubviews: [needLabel, signUpButton], axis: .horizontal, spacing: 20)
         bottomStackView.alignment = .firstBaseline
+        
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,29 +73,30 @@ extension SignUpViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
         NSLayoutConstraint.activate([
-            bottomStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 140),
+            bottomStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 100),
             bottomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             bottomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
+        
     }
 }
 
 // MARK: - SwiftUI
 import SwiftUI
 
-struct SignUpViewControllerProvider: PreviewProvider {
+struct LoginViewControllerProvider: PreviewProvider {
     static var previews: some View {
         ContainerView().edgesIgnoringSafeArea(.all)
     }
     
     struct ContainerView: UIViewControllerRepresentable {
-        let viewController = SignUpViewController()
+        let viewController = LoginViewController()
         
-        func makeUIViewController(context: UIViewControllerRepresentableContext<SignUpViewControllerProvider.ContainerView>) -> SignUpViewController {
+        func makeUIViewController(context: UIViewControllerRepresentableContext<LoginViewControllerProvider.ContainerView>) -> LoginViewController {
            viewController
         }
         
-        func updateUIViewController(_ uiViewController: SignUpViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<SignUpViewControllerProvider.ContainerView>) {
+        func updateUIViewController(_ uiViewController: LoginViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<LoginViewControllerProvider.ContainerView>) {
         }
     }
 }
