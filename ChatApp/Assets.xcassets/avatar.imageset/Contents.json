@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "avatar.png",
+      "filename" : "Снимок экрана 2022-02-13 в 21.04.15.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "avatar@2x.png",
+      "filename" : "Снимок экрана 2022-02-13 в 21.04.15-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "avatar@3x.png",
+      "filename" : "Снимок экрана 2022-02-13 в 21.04.15-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
