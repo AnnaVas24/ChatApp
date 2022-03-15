@@ -29,6 +29,10 @@
 		511E084E27B9B2950063EE15 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511E084D27B9B2950063EE15 /* PeopleViewController.swift */; };
 		511E085027B9B3270063EE15 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511E084F27B9B3270063EE15 /* MainTabBarController.swift */; };
 		5127C3B127BD46AB00890D7F /* Bundle+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127C3B027BD46AB00890D7F /* Bundle+Decodable.swift */; };
+		518DEC4F27E0B2BE00F824EB /* WaitingChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */; };
+		518DEC5127E0B46D00F824EB /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC5027E0B46D00F824EB /* SelfConfiguringCell.swift */; };
+		51A1455927D2628D00E18437 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455827D2628D00E18437 /* ActiveChatCell.swift */; };
+		51A1455B27D27A9A00E18437 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455A27D27A9A00E18437 /* GradientView.swift */; };
 		51BFB5F127BD454400F766E6 /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 51BFB5F027BD454400F766E6 /* activeChats.json */; };
 		51BFB5F327BD457900F766E6 /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 51BFB5F227BD457900F766E6 /* waitingChats.json */; };
 /* End PBXBuildFile section */
@@ -58,6 +62,10 @@
 		511E084D27B9B2950063EE15 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		511E084F27B9B3270063EE15 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		5127C3B027BD46AB00890D7F /* Bundle+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decodable.swift"; sourceTree = "<group>"; };
+		518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatCell.swift; sourceTree = "<group>"; };
+		518DEC5027E0B46D00F824EB /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
+		51A1455827D2628D00E18437 /* ActiveChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveChatCell.swift; sourceTree = "<group>"; };
+		51A1455A27D27A9A00E18437 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		51BFB5F027BD454400F766E6 /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		51BFB5F227BD457900F766E6 /* waitingChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,10 +102,10 @@
 			children = (
 				511E081A27B6B0E00063EE15 /* AppDelegate.swift */,
 				511E081C27B6B0E00063EE15 /* SceneDelegate.swift */,
-				511E084F27B9B3270063EE15 /* MainTabBarController.swift */,
-				511E084B27B9B2800063EE15 /* ListViewController.swift */,
-				511E084D27B9B2950063EE15 /* PeopleViewController.swift */,
+				518DEC5327E0B4B000F824EB /* Controllers */,
+				51A1455627D2623100E18437 /* Cell */,
 				511E084A27B9B1D60063EE15 /* SignIn&Auth */,
+				518DEC5227E0B48A00F824EB /* Protocols */,
 				511E083927B7FBA20063EE15 /* Extensions */,
 				511E082327B6B0E10063EE15 /* Assets.xcassets */,
 				511E082527B6B0E10063EE15 /* LaunchScreen.storyboard */,
@@ -129,6 +137,7 @@
 				511E084627B96D5B0063EE15 /* AddPhotoView.swift */,
 				511E084027B952AC0063EE15 /* OneLineTextField.swift */,
 				5127C3B027BD46AB00890D7F /* Bundle+Decodable.swift */,
+				51A1455A27D27A9A00E18437 /* GradientView.swift */,
 				511E083827B7FB920063EE15 /* UIKit */,
 			);
 			path = Extensions;
@@ -143,6 +152,33 @@
 				511E084427B968530063EE15 /* SetupProfileViewController.swift */,
 			);
 			path = "SignIn&Auth";
+			sourceTree = "<group>";
+		};
+		518DEC5227E0B48A00F824EB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				518DEC5027E0B46D00F824EB /* SelfConfiguringCell.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		518DEC5327E0B4B000F824EB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				511E084B27B9B2800063EE15 /* ListViewController.swift */,
+				511E084F27B9B3270063EE15 /* MainTabBarController.swift */,
+				511E084D27B9B2950063EE15 /* PeopleViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		51A1455627D2623100E18437 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				51A1455827D2628D00E18437 /* ActiveChatCell.swift */,
+				518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +255,10 @@
 			files = (
 				511E084C27B9B2800063EE15 /* ListViewController.swift in Sources */,
 				5127C3B127BD46AB00890D7F /* Bundle+Decodable.swift in Sources */,
+				51A1455B27D27A9A00E18437 /* GradientView.swift in Sources */,
 				511E084127B952AC0063EE15 /* OneLineTextField.swift in Sources */,
 				511E083F27B8033D0063EE15 /* SignUpViewController.swift in Sources */,
+				51A1455927D2628D00E18437 /* ActiveChatCell.swift in Sources */,
 				511E083727B7EC770063EE15 /* UIImagaView + Extension.swift in Sources */,
 				511E083127B7EC3B0063EE15 /* UIFont + Extension.swift in Sources */,
 				511E084E27B9B2950063EE15 /* PeopleViewController.swift in Sources */,
@@ -232,6 +270,8 @@
 				511E083527B7EC5D0063EE15 /* UILabel + Extension.swift in Sources */,
 				511E084927B9AA090063EE15 /* SegmentedControl + Extension.swift in Sources */,
 				511E085027B9B3270063EE15 /* MainTabBarController.swift in Sources */,
+				518DEC5127E0B46D00F824EB /* SelfConfiguringCell.swift in Sources */,
+				518DEC4F27E0B2BE00F824EB /* WaitingChatCell.swift in Sources */,
 				511E083327B7EC4C0063EE15 /* UIColor + Extension.swift in Sources */,
 				511E081D27B6B0E00063EE15 /* SceneDelegate.swift in Sources */,
 				511E082F27B7EC200063EE15 /* UIButton + Extension.swift in Sources */,
@@ -377,6 +417,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U924G2S36U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -403,6 +444,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U924G2S36U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

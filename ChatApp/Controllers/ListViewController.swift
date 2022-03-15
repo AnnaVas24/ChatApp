@@ -59,8 +59,9 @@ class ListViewController: UIViewController {
         collectionView.backgroundColor = .mainWhite()
         view.addSubview(collectionView)
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID2")
+        collectionView.register(ActiveChatCell.self, forCellWithReuseIdentifier: ActiveChatCell.reuseID)
+        collectionView.register(WaitingChatCell.self, forCellWithReuseIdentifier: WaitingChatCell.reuseID)
+        
     }
     
     
@@ -76,6 +77,13 @@ class ListViewController: UIViewController {
 }
 // MARK: - Data Source
 extension ListViewController {
+    
+    private func configure<T: SelfConfiguringCell>(cellType: T.Type, with value: MChat, for indexPath: IndexPath) -> T {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseID, for: indexPath) as? T else {fatalError("Unable to dequeue \(cellType)")}
+        cell.configure(with: value)
+        return cell
+    }
+    
     private func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, MChat>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, chat) ->
             UICollectionViewCell? in
@@ -84,14 +92,10 @@ extension ListViewController {
             }
             switch section {
             case .activeChats:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath)
-                cell.backgroundColor = .systemYellow
-                return cell
+                return self.configure(cellType: ActiveChatCell.self, with: chat, for: indexPath)
             
             case .waitingChats:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID2", for: indexPath)
-                cell.backgroundColor = .systemOrange
-                return cell
+                return self.configure(cellType: WaitingChatCell.self, with: chat, for: indexPath)
             }
         })
     }
@@ -149,19 +153,21 @@ extension ListViewController: UISearchBarDelegate {
 // MARK: - SwiftUI
 import SwiftUI
 
-struct ListViewControllerProvider: PreviewProvider {
+struct ListVCProvider: PreviewProvider {
     static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all).previewInterfaceOrientation(.portrait)
+        ContainerView().edgesIgnoringSafeArea(.all)
     }
     
     struct ContainerView: UIViewControllerRepresentable {
-        let viewController = MainTabBarController()
         
-        func makeUIViewController(context: UIViewControllerRepresentableContext<ListViewControllerProvider.ContainerView>) -> MainTabBarController {
-           viewController
+        let tabBarVC = MainTabBarController()
+        
+        func makeUIViewController(context: UIViewControllerRepresentableContext<ListVCProvider.ContainerView>) -> MainTabBarController {
+            return tabBarVC
         }
         
-        func updateUIViewController(_ uiViewController: ListViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ListViewControllerProvider.ContainerView>) {
+        func updateUIViewController(_ uiViewController: ListVCProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ListVCProvider.ContainerView>) {
+            
         }
     }
 }
