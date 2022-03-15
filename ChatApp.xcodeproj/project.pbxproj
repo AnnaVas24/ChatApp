@@ -31,6 +31,7 @@
 		5127C3B127BD46AB00890D7F /* Bundle+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127C3B027BD46AB00890D7F /* Bundle+Decodable.swift */; };
 		518DEC4F27E0B2BE00F824EB /* WaitingChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */; };
 		518DEC5127E0B46D00F824EB /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC5027E0B46D00F824EB /* SelfConfiguringCell.swift */; };
+		518DEC5527E0B83200F824EB /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC5427E0B83200F824EB /* SectionHeader.swift */; };
 		51A1455927D2628D00E18437 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455827D2628D00E18437 /* ActiveChatCell.swift */; };
 		51A1455B27D27A9A00E18437 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455A27D27A9A00E18437 /* GradientView.swift */; };
 		51BFB5F127BD454400F766E6 /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 51BFB5F027BD454400F766E6 /* activeChats.json */; };
@@ -64,6 +65,7 @@
 		5127C3B027BD46AB00890D7F /* Bundle+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decodable.swift"; sourceTree = "<group>"; };
 		518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatCell.swift; sourceTree = "<group>"; };
 		518DEC5027E0B46D00F824EB /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
+		518DEC5427E0B83200F824EB /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		51A1455827D2628D00E18437 /* ActiveChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveChatCell.swift; sourceTree = "<group>"; };
 		51A1455A27D27A9A00E18437 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		51BFB5F027BD454400F766E6 /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				51A1455827D2628D00E18437 /* ActiveChatCell.swift */,
 				518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */,
+				518DEC5427E0B83200F824EB /* SectionHeader.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			files = (
 				511E084C27B9B2800063EE15 /* ListViewController.swift in Sources */,
 				5127C3B127BD46AB00890D7F /* Bundle+Decodable.swift in Sources */,
+				518DEC5527E0B83200F824EB /* SectionHeader.swift in Sources */,
 				51A1455B27D27A9A00E18437 /* GradientView.swift in Sources */,
 				511E084127B952AC0063EE15 /* OneLineTextField.swift in Sources */,
 				511E083F27B8033D0063EE15 /* SignUpViewController.swift in Sources */,
