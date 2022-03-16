@@ -40,6 +40,7 @@
 		518DEC6A27E243FD00F824EB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC6927E243FD00F824EB /* ProfileViewController.swift */; };
 		518DEC6C27E2547800F824EB /* CustomizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC6B27E2547800F824EB /* CustomizedTextField.swift */; };
 		518DEC6E27E25E3C00F824EB /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC6D27E25E3C00F824EB /* UIView + Extension.swift */; };
+		518DEC7027E2690D00F824EB /* ChatRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC6F27E2690D00F824EB /* ChatRequestViewController.swift */; };
 		51A1455927D2628D00E18437 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455827D2628D00E18437 /* ActiveChatCell.swift */; };
 		51A1455B27D27A9A00E18437 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455A27D27A9A00E18437 /* GradientView.swift */; };
 		51BFB5F127BD454400F766E6 /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 51BFB5F027BD454400F766E6 /* activeChats.json */; };
@@ -82,6 +83,7 @@
 		518DEC6927E243FD00F824EB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		518DEC6B27E2547800F824EB /* CustomizedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedTextField.swift; sourceTree = "<group>"; };
 		518DEC6D27E25E3C00F824EB /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		518DEC6F27E2690D00F824EB /* ChatRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestViewController.swift; sourceTree = "<group>"; };
 		51A1455827D2628D00E18437 /* ActiveChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveChatCell.swift; sourceTree = "<group>"; };
 		51A1455A27D27A9A00E18437 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		51BFB5F027BD454400F766E6 /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				511E084B27B9B2800063EE15 /* ListViewController.swift */,
 				511E084D27B9B2950063EE15 /* PeopleViewController.swift */,
 				518DEC6927E243FD00F824EB /* ProfileViewController.swift */,
+				518DEC6F27E2690D00F824EB /* ChatRequestViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				518DEC6A27E243FD00F824EB /* ProfileViewController.swift in Sources */,
 				511E081F27B6B0E00063EE15 /* AuthViewController.swift in Sources */,
 				518DEC6027E202AE00F824EB /* MUser.swift in Sources */,
+				518DEC7027E2690D00F824EB /* ChatRequestViewController.swift in Sources */,
 				511E083B27B7FC1A0063EE15 /* ButtonFormView.swift in Sources */,
 				511E084727B96D5B0063EE15 /* AddPhotoView.swift in Sources */,
 				511E081B27B6B0E00063EE15 /* AppDelegate.swift in Sources */,
