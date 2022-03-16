@@ -32,6 +32,11 @@
 		518DEC4F27E0B2BE00F824EB /* WaitingChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */; };
 		518DEC5127E0B46D00F824EB /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC5027E0B46D00F824EB /* SelfConfiguringCell.swift */; };
 		518DEC5527E0B83200F824EB /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC5427E0B83200F824EB /* SectionHeader.swift */; };
+		518DEC5E27E2029200F824EB /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC5D27E2029200F824EB /* MChat.swift */; };
+		518DEC6027E202AE00F824EB /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC5F27E202AE00F824EB /* MUser.swift */; };
+		518DEC6327E20DD500F824EB /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 518DEC6227E20DD500F824EB /* users.json */; };
+		518DEC6527E2157D00F824EB /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC6427E2157D00F824EB /* UserCell.swift */; };
+		518DEC6727E218F400F824EB /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DEC6627E218F400F824EB /* UIViewController + Extension.swift */; };
 		51A1455927D2628D00E18437 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455827D2628D00E18437 /* ActiveChatCell.swift */; };
 		51A1455B27D27A9A00E18437 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A1455A27D27A9A00E18437 /* GradientView.swift */; };
 		51BFB5F127BD454400F766E6 /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 51BFB5F027BD454400F766E6 /* activeChats.json */; };
@@ -66,6 +71,11 @@
 		518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatCell.swift; sourceTree = "<group>"; };
 		518DEC5027E0B46D00F824EB /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
 		518DEC5427E0B83200F824EB /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		518DEC5D27E2029200F824EB /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
+		518DEC5F27E202AE00F824EB /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
+		518DEC6227E20DD500F824EB /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
+		518DEC6427E2157D00F824EB /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		518DEC6627E218F400F824EB /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		51A1455827D2628D00E18437 /* ActiveChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveChatCell.swift; sourceTree = "<group>"; };
 		51A1455A27D27A9A00E18437 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		51BFB5F027BD454400F766E6 /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
@@ -104,13 +114,17 @@
 			children = (
 				511E081A27B6B0E00063EE15 /* AppDelegate.swift */,
 				511E081C27B6B0E00063EE15 /* SceneDelegate.swift */,
+				518DEC6827E222F500F824EB /* Models */,
 				518DEC5327E0B4B000F824EB /* Controllers */,
 				51A1455627D2623100E18437 /* Cell */,
 				511E084A27B9B1D60063EE15 /* SignIn&Auth */,
 				518DEC5227E0B48A00F824EB /* Protocols */,
 				511E083927B7FBA20063EE15 /* Extensions */,
-				511E082327B6B0E10063EE15 /* Assets.xcassets */,
 				511E082527B6B0E10063EE15 /* LaunchScreen.storyboard */,
+				51BFB5F227BD457900F766E6 /* waitingChats.json */,
+				51BFB5F027BD454400F766E6 /* activeChats.json */,
+				518DEC6227E20DD500F824EB /* users.json */,
+				511E082327B6B0E10063EE15 /* Assets.xcassets */,
 				511E082827B6B0E10063EE15 /* Info.plist */,
 			);
 			path = ChatApp;
@@ -119,6 +133,7 @@
 		511E083827B7FB920063EE15 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				518DEC6627E218F400F824EB /* UIViewController + Extension.swift */,
 				511E082E27B7EC200063EE15 /* UIButton + Extension.swift */,
 				511E083027B7EC3B0063EE15 /* UIFont + Extension.swift */,
 				511E084827B9AA090063EE15 /* SegmentedControl + Extension.swift */,
@@ -126,8 +141,6 @@
 				511E083427B7EC5D0063EE15 /* UILabel + Extension.swift */,
 				511E083627B7EC770063EE15 /* UIImagaView + Extension.swift */,
 				511E083C27B7FDC00063EE15 /* StackView + Extension.swift */,
-				51BFB5F027BD454400F766E6 /* activeChats.json */,
-				51BFB5F227BD457900F766E6 /* waitingChats.json */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -167,11 +180,20 @@
 		518DEC5327E0B4B000F824EB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				511E084B27B9B2800063EE15 /* ListViewController.swift */,
 				511E084F27B9B3270063EE15 /* MainTabBarController.swift */,
+				511E084B27B9B2800063EE15 /* ListViewController.swift */,
 				511E084D27B9B2950063EE15 /* PeopleViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		518DEC6827E222F500F824EB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				518DEC5D27E2029200F824EB /* MChat.swift */,
+				518DEC5F27E202AE00F824EB /* MUser.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		51A1455627D2623100E18437 /* Cell */ = {
@@ -179,6 +201,7 @@
 			children = (
 				51A1455827D2628D00E18437 /* ActiveChatCell.swift */,
 				518DEC4E27E0B2BE00F824EB /* WaitingChatCell.swift */,
+				518DEC6427E2157D00F824EB /* UserCell.swift */,
 				518DEC5427E0B83200F824EB /* SectionHeader.swift */,
 			);
 			path = Cell;
@@ -242,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				518DEC6327E20DD500F824EB /* users.json in Resources */,
 				51BFB5F127BD454400F766E6 /* activeChats.json in Resources */,
 				511E082727B6B0E10063EE15 /* LaunchScreen.storyboard in Resources */,
 				51BFB5F327BD457900F766E6 /* waitingChats.json in Resources */,
@@ -267,13 +291,17 @@
 				511E083127B7EC3B0063EE15 /* UIFont + Extension.swift in Sources */,
 				511E084E27B9B2950063EE15 /* PeopleViewController.swift in Sources */,
 				511E084527B968530063EE15 /* SetupProfileViewController.swift in Sources */,
+				518DEC5E27E2029200F824EB /* MChat.swift in Sources */,
 				511E081F27B6B0E00063EE15 /* AuthViewController.swift in Sources */,
+				518DEC6027E202AE00F824EB /* MUser.swift in Sources */,
 				511E083B27B7FC1A0063EE15 /* ButtonFormView.swift in Sources */,
 				511E084727B96D5B0063EE15 /* AddPhotoView.swift in Sources */,
 				511E081B27B6B0E00063EE15 /* AppDelegate.swift in Sources */,
 				511E083527B7EC5D0063EE15 /* UILabel + Extension.swift in Sources */,
 				511E084927B9AA090063EE15 /* SegmentedControl + Extension.swift in Sources */,
 				511E085027B9B3270063EE15 /* MainTabBarController.swift in Sources */,
+				518DEC6527E2157D00F824EB /* UserCell.swift in Sources */,
+				518DEC6727E218F400F824EB /* UIViewController + Extension.swift in Sources */,
 				518DEC5127E0B46D00F824EB /* SelfConfiguringCell.swift in Sources */,
 				518DEC4F27E0B2BE00F824EB /* WaitingChatCell.swift in Sources */,
 				511E083327B7EC4C0063EE15 /* UIColor + Extension.swift in Sources */,

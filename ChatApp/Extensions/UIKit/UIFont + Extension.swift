@@ -17,4 +17,8 @@ extension UIFont {
     static func arial18() -> UIFont? {
         UIFont.init(name: "Arial", size: 18)
     }
+    
+    static func arial36() -> UIFont? {
+        UIFont.init(name: "Arial", size: 36)
+    }
 }
