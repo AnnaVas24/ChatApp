@@ -33,8 +33,22 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .mainWhite()
         googleButton.customizeGoogleButton()
         setupConstrains()
+        
+        loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
     }
     
+    @objc private func loginButtonPressed() {
+        AuthService.shared.login(email: emailTF.text, password: passwordTF.text) { result in
+            switch result {
+            case .success(let user):
+                self.showAlert(title: "Success!", message: "You are authorized")
+                print(user.email)
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+        
+    }
 }
 // MARK: - Setup Constraits
 extension LoginViewController {
@@ -74,7 +88,7 @@ extension LoginViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
         NSLayoutConstraint.activate([
-            bottomStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 100),
+            bottomStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
             bottomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             bottomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
