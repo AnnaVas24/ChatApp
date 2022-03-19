@@ -27,6 +27,9 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = .arial20()
         return button
     }()
+    
+    weak var delegate: AuthNavigationDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,19 +38,34 @@ class LoginViewController: UIViewController {
         setupConstrains()
         
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
     }
     
     @objc private func loginButtonPressed() {
         AuthService.shared.login(email: emailTF.text, password: passwordTF.text) { result in
             switch result {
             case .success(let user):
-                self.showAlert(title: "Success!", message: "You are authorized")
-                print(user.email)
+                FirestoreService.shared.getUserData(user: user) { result in
+                    switch result {
+                    case .success(let mUser):
+                        let mainTabBar = MainTabBarController(currentUser: mUser)
+                        mainTabBar.modalPresentationStyle = .fullScreen
+                        self.present(mainTabBar, animated: true)
+                    case .failure(_):
+                        self.present(SetupProfileViewController(currentUser: user), animated: true)
+                    }
+                }
             case .failure(let error):
                 self.showAlert(title: "Error", message: error.localizedDescription)
             }
         }
         
+    }
+    
+    @objc private func signUpButtonPressed() {
+        dismiss(animated: true) {
+            self.delegate?.toSignUpVC()
+        }
     }
 }
 // MARK: - Setup Constraits
@@ -79,7 +97,7 @@ extension LoginViewController {
         view.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
-            welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         NSLayoutConstraint.activate([

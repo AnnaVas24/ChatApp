@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PeopleViewController: UIViewController {
     
-    let users = Bundle.main.decode([MUser].self, from: "users.json")
+    //let users = Bundle.main.decode([MUser].self, from: "users.json")
     
     enum Section: Int, CaseIterable {
         case users
@@ -23,14 +24,43 @@ class PeopleViewController: UIViewController {
     }
     var dataSource: UICollectionViewDiffableDataSource<Section, MUser>?
     var collectionView: UICollectionView!
-
+    
+    private let currentUser: MUser
+    
+    init(currentUser: MUser) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+        title = currentUser.username
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .mainWhite()
         setupSearchBar()
         setupCollectionView()
         createDataSource()
-        reloadData(with: nil)
+        //reloadData(with: nil)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logOut))
+    }
+    
+    @objc private func logOut() {
+        let ac = UIAlertController(title: nil, message: "Do you realy want to log out?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        ac.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { _ in
+            do {
+                try Auth.auth().signOut()
+                UIApplication.shared.keyWindow?.rootViewController = AuthViewController()
+            } catch {
+                print("Error occured: \(error.localizedDescription)")
+            }
+        }))
+        
+        present(ac, animated: true)
     }
     private func setupSearchBar() {
         navigationController?.navigationBar.barTintColor = .mainWhite()
@@ -54,15 +84,15 @@ class PeopleViewController: UIViewController {
         collectionView.register(UserCell.self, forCellWithReuseIdentifier: UserCell.reuseID)
     }
     
-    private func reloadData(with searchText: String?) {
-        let filtered = users.filter { user in
-            user.contains(filter: searchText)
-        }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
-        snapshot.appendSections([.users])
-        snapshot.appendItems(filtered, toSection: .users)
-        dataSource?.apply(snapshot, animatingDifferences: true)
-    }
+//    private func reloadData(with searchText: String?) {
+//        let filtered = users.filter { user in
+//            user.contains(filter: searchText)
+//        }
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
+//        snapshot.appendSections([.users])
+//        snapshot.appendItems(filtered, toSection: .users)
+//        dataSource?.apply(snapshot, animatingDifferences: true)
+//    }
 }
 
 // MARK: - Compositional Layout
@@ -141,7 +171,7 @@ extension PeopleViewController {
 // MARK: - UISearchBarDelegate
 extension PeopleViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        reloadData(with: searchText)
+        //reloadData(with: searchText)
     }
 }
 // MARK: - SwiftUI
