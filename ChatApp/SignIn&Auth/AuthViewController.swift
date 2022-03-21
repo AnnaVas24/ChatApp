@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class AuthViewController: UIViewController {
     
@@ -14,7 +15,10 @@ class AuthViewController: UIViewController {
     let emailLabel = UILabel(text: "Sign up with")
     let alreadyLabel = UILabel(text: "Already have an account?")
 
-    let googleButton = UIButton(title: "Google", titleColor: .black, backgroundColor: .white, isShadow: true)
+  
+    
+    let googleB = GIDSignInButton()
+    
     let emailButton = UIButton(title: "Email", titleColor: .white, backgroundColor: .buttonBlack(), isShadow: false)
     let loginButton = UIButton(title: "Login", titleColor: .buttonRed(), backgroundColor: .white, isShadow: true)
     let signUpVC = SignUpViewController()
@@ -23,7 +27,6 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .mainWhite()
-        googleButton.customizeGoogleButton()
         setupConstraints()
         
         emailButton.addTarget(self, action: #selector(emailButtonPressed), for: .touchUpInside)
@@ -31,6 +34,8 @@ class AuthViewController: UIViewController {
         
         signUpVC.delegate = self
         loginVC.delegate = self
+        
+        googleB.addTarget(self, action: #selector(googlePressed), for: .touchUpInside)
     }
    
     @objc private func emailButtonPressed() {
@@ -41,6 +46,10 @@ class AuthViewController: UIViewController {
         present(loginVC, animated: true, completion: nil)
     }
     
+    @objc private func googlePressed() {
+        sign()
+    }
+    
 }
 
 // MARK: - Setup constraints
@@ -48,11 +57,13 @@ extension AuthViewController {
     private func setupConstraints() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        let googleView = ButtonFormView(label: googleLabel, button: googleButton)
         let emailView = ButtonFormView(label: emailLabel, button: emailButton)
         let loginView = ButtonFormView(label: alreadyLabel, button: loginButton)
         
-        let stackView = UIStackView(arrangeSubviews: [googleView, emailView, loginView], axis: .vertical, spacing: 40)
+        googleB.style = .wide
+        let googleButtonView = ButtonFormView(label: googleLabel, button: googleB)
+    
+        let stackView = UIStackView(arrangeSubviews: [googleButtonView, emailView, loginView], axis: .vertical, spacing: 40)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(logoImageView)
@@ -78,9 +89,34 @@ extension AuthViewController: AuthNavigationDelegate {
     func toSignUpVC() {
         present(signUpVC, animated: true)
     }
-    
-    
 }
+
+extension AuthViewController {
+    func sign() {
+        AuthService.shared.loginGoogle(viewController: self) { result in
+            switch result {
+            case .success(let user):
+                FirestoreService.shared.getUserData(user: user) { result in
+                    switch result {
+                    case .success(let muser):
+                        self.showAlert(title: "Success!", message: "You are registered") {
+                            let mainTabBar = MainTabBarController(currentUser: muser)
+                            mainTabBar.modalPresentationStyle = .fullScreen
+                            self.present(mainTabBar, animated: true)
+                        }
+                    case .failure(_):
+                        self.showAlert(title: "Success!", message: "You are registered") {
+                            self.present(SetupProfileViewController(currentUser: user), animated: true)
+                        }
+                    }
+                }
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+    }
+}
+
 // MARK: - SwiftUI
 import SwiftUI
 

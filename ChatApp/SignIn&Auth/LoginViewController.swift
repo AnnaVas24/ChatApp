@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
@@ -16,7 +17,8 @@ class LoginViewController: UIViewController {
     let passwordLabel = UILabel(text: "Password")
     let needLabel = UILabel(text: "Need an account?")
     
-    let googleButton = UIButton(title: "Google", titleColor: .black, backgroundColor: .white, isShadow: true)
+    let googleB = GIDSignInButton()
+    
     let emailTF = OneLineTextFild(font: .arial20())
     let passwordTF = OneLineTextFild(font: .arial20())
     let loginButton = UIButton(title: "Login", titleColor: .white, backgroundColor: .buttonBlack(), isShadow: false)
@@ -34,11 +36,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .mainWhite()
-        googleButton.customizeGoogleButton()
         setupConstrains()
         
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+    
+        googleB.addTarget(self, action: #selector(googleButtonPressed), for: .touchUpInside)
     }
     
     @objc private func loginButtonPressed() {
@@ -67,11 +70,18 @@ class LoginViewController: UIViewController {
             self.delegate?.toSignUpVC()
         }
     }
+    
+    @objc private func googleButtonPressed() {
+        sign()
+    }
 }
 // MARK: - Setup Constraits
 extension LoginViewController {
     private func setupConstrains(){
-        let loginWithView = ButtonFormView(label: loginWithLabel, button: googleButton)
+        
+        googleB.style = .wide
+        
+        let loginWithView = ButtonFormView(label: loginWithLabel, button: googleB)
         let emailStackView = UIStackView(arrangeSubviews: [emailLabel,emailTF], axis: .vertical, spacing: 0)
         let passwordStackView = UIStackView(arrangeSubviews: [passwordLabel, passwordTF], axis: .vertical, spacing: 0)
         loginButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -111,6 +121,32 @@ extension LoginViewController {
             bottomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
         
+    }
+}
+
+extension LoginViewController {
+    func sign() {
+        AuthService.shared.loginGoogle(viewController: self) { result in
+            switch result {
+            case .success(let user):
+                FirestoreService.shared.getUserData(user: user) { result in
+                    switch result {
+                    case .success(let muser):
+                        self.showAlert(title: "Success!", message: "You are registered") {
+                            let mainTabBar = MainTabBarController(currentUser: muser)
+                            mainTabBar.modalPresentationStyle = .fullScreen
+                            self.present(mainTabBar, animated: true)
+                        }
+                    case .failure(_):
+                        self.showAlert(title: "Success!", message: "You are registered") {
+                            self.present(SetupProfileViewController(currentUser: user), animated: true)
+                        }
+                    }
+                }
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
     }
 }
 

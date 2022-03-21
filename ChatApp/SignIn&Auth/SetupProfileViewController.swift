@@ -27,6 +27,10 @@ class SetupProfileViewController: UIViewController {
     init(currentUser: User) {
         self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
+        
+        if let username = currentUser.displayName {
+            fullNameTF.text = username
+        }
     }
     
     override func viewDidLoad() {
