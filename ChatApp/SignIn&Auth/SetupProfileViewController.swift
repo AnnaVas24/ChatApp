@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 
+
 class SetupProfileViewController: UIViewController {
 
     let imageView = AddPhotoView()
@@ -38,10 +39,19 @@ class SetupProfileViewController: UIViewController {
         view.backgroundColor = .mainWhite()
         setupConstraints()
         goToChatsButton.addTarget(self, action: #selector(goToChats), for: .touchUpInside)
+        
+        imageView.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc private func plusButtonPressed(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true)
     }
     
     @objc private func goToChats() {
-        FirestoreService.shared.saveProfileWith(id: currentUser.uid, email: currentUser.email!, username: fullNameTF.text, avatarImageString: "not found", description: aboutMeTF.text, gender: genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)) { result in
+        FirestoreService.shared.saveProfileWith(id: currentUser.uid, email: currentUser.email!, username: fullNameTF.text, avatarImage: imageView.circleImageView.image, description: aboutMeTF.text, gender: genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)) { result in
             switch result {
             case .success(let mUser):
                 self.showAlert(title: "Success!", message: "Wish you a good comunication!") {
@@ -56,6 +66,14 @@ class SetupProfileViewController: UIViewController {
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+// MARK: - UIImagePickerControllerDelegate
+extension SetupProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        imageView.circleImageView.image = image
     }
 }
 // MARK: - Setup Constraints

@@ -7,10 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class PeopleViewController: UIViewController {
     
-    //let users = Bundle.main.decode([MUser].self, from: "users.json")
+    var users = [MUser]()
+    private var usersListener: ListenerRegistration?
     
     enum Section: Int, CaseIterable {
         case users
@@ -37,15 +39,26 @@ class PeopleViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        usersListener?.remove()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .mainWhite()
         setupSearchBar()
         setupCollectionView()
         createDataSource()
-        //reloadData(with: nil)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logOut))
+        usersListener = ListenerService.shared.usersObserve(users: users, completion: { result in
+            switch result {
+            case .success(let users):
+                self.users = users
+                self.reloadData(with: nil)
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        })
     }
     
     @objc private func logOut() {
@@ -84,15 +97,15 @@ class PeopleViewController: UIViewController {
         collectionView.register(UserCell.self, forCellWithReuseIdentifier: UserCell.reuseID)
     }
     
-//    private func reloadData(with searchText: String?) {
-//        let filtered = users.filter { user in
-//            user.contains(filter: searchText)
-//        }
-//        var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
-//        snapshot.appendSections([.users])
-//        snapshot.appendItems(filtered, toSection: .users)
-//        dataSource?.apply(snapshot, animatingDifferences: true)
-//    }
+    private func reloadData(with searchText: String?) {
+        let filtered = users.filter { user in
+            user.contains(filter: searchText)
+        }
+        var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
+        snapshot.appendSections([.users])
+        snapshot.appendItems(filtered, toSection: .users)
+        dataSource?.apply(snapshot, animatingDifferences: true)
+    }
 }
 
 // MARK: - Compositional Layout
@@ -171,7 +184,7 @@ extension PeopleViewController {
 // MARK: - UISearchBarDelegate
 extension PeopleViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //reloadData(with: searchText)
+        reloadData(with: searchText)
     }
 }
 // MARK: - SwiftUI

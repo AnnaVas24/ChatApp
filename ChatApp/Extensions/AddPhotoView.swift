@@ -12,7 +12,7 @@ class AddPhotoView: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "avatar")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = 1

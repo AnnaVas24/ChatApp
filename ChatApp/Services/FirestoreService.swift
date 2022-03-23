@@ -34,14 +34,17 @@ class FirestoreService {
         }
     }
     
-    func saveProfileWith(id: String, email: String, username: String?, avatarImageString: String?, description: String?, gender: String?, completion: @escaping(Result<MUser, Error>) -> Void) {
+    func saveProfileWith(id: String, email: String, username: String?, avatarImage: UIImage?, description: String?, gender: String?, completion: @escaping(Result<MUser, Error>) -> Void) {
         
         guard Validators.isFilled(username: username, description: description, gender: gender) else {
             completion(.failure(UserError.notFilled))
             return
         }
-        
-        let mUser = MUser(
+        guard avatarImage != UIImage(named: "avatar") else {
+            completion(.failure(UserError.photoNotFound))
+            return
+        }
+        var mUser = MUser(
             username: username!,
             avatarStringURL: "not found",
             id: id,
@@ -49,12 +52,22 @@ class FirestoreService {
             description: description!,
             gender: gender!
         )
-        self.usersRef.document(mUser.id).setData(mUser.representation) { error in
-            if let error = error {
+        StorageService.shared.upload(photo: avatarImage!) { result in
+            switch result {
+            case .success(let url):
+                mUser.avatarStringURL = url.absoluteString
+                self.usersRef.document(mUser.id).setData(mUser.representation) { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(mUser))
+                    }
+                }
+            case .failure(let error):
                 completion(.failure(error))
-            } else {
-                completion(.success(mUser))
             }
         }
+        
+        
     }
 }

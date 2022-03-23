@@ -73,7 +73,7 @@ extension UserCell {
         NSLayoutConstraint.activate([
             friendName.topAnchor.constraint(equalTo: friendImageView.bottomAnchor),
             friendName.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            friendName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            friendName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
             friendName.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
     }
