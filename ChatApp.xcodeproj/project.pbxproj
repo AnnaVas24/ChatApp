@@ -59,6 +59,7 @@
 		51F75F8D27EB87A00084AE07 /* MMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F75F8C27EB87A00084AE07 /* MMessage.swift */; };
 		51F75F8F27EB8DA70084AE07 /* UIApplication + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F75F8E27EB8DA70084AE07 /* UIApplication + Extension.swift */; };
 		51F75F9127EDF6FF0084AE07 /* WaitingChatsNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F75F9027EDF6FF0084AE07 /* WaitingChatsNavigation.swift */; };
+		51F75F9327EE27180084AE07 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F75F9227EE27180084AE07 /* ChatsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		51F75F8C27EB87A00084AE07 /* MMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMessage.swift; sourceTree = "<group>"; };
 		51F75F8E27EB8DA70084AE07 /* UIApplication + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Extension.swift"; sourceTree = "<group>"; };
 		51F75F9027EDF6FF0084AE07 /* WaitingChatsNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatsNavigation.swift; sourceTree = "<group>"; };
+		51F75F9227EE27180084AE07 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		69471B17CFB4E4FC4E0396EE /* Pods-ChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.debug.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C5DC79B424051AF71358955F /* Pods_ChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD870AFF6DE6CC180D48EFC7 /* Pods-ChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.release.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				511E084F27B9B3270063EE15 /* MainTabBarController.swift */,
+				51F75F9227EE27180084AE07 /* ChatsViewController.swift */,
 				511E084B27B9B2800063EE15 /* ListViewController.swift */,
 				511E084D27B9B2950063EE15 /* PeopleViewController.swift */,
 				518DEC6927E243FD00F824EB /* ProfileViewController.swift */,
@@ -444,6 +447,7 @@
 				518DEC8027E51F3900F824EB /* UserError.swift in Sources */,
 				518DEC6C27E2547800F824EB /* CustomizedTextField.swift in Sources */,
 				511E083527B7EC5D0063EE15 /* UILabel + Extension.swift in Sources */,
+				51F75F9327EE27180084AE07 /* ChatsViewController.swift in Sources */,
 				51F75F8F27EB8DA70084AE07 /* UIApplication + Extension.swift in Sources */,
 				51F75F8D27EB87A00084AE07 /* MMessage.swift in Sources */,
 				518DEC6E27E25E3C00F824EB /* UIView + Extension.swift in Sources */,
