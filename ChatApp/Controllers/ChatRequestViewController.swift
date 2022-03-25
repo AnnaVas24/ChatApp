@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChatRequestViewController: UIViewController {
     
@@ -15,10 +16,28 @@ class ChatRequestViewController: UIViewController {
     let messageLabel = UILabel(text: "Hey, whats'up?", font: .systemFont(ofSize: 16))
     let acceptButton = UIButton(title: "ACCEPT", titleColor: .white, backgroundColor: .systemPurple, font: .arial20(), isShadow: false, cornerRadius: 10)
     let denyButton = UIButton(title: "Deny", titleColor: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1), backgroundColor: .mainWhite(), font: .arial20(), isShadow: false, cornerRadius: 10)
-
+    
+    weak var delegate: WaitingChatsNavigation?
+    
+    private var chat: MChat
+    init(chat: MChat){
+        self.chat = chat
+        nameLabel.text = chat.friendUsername
+        messageLabel.text = chat.lastMessageContent
+        imageView.sd_setImage(with: URL(string: chat.friendAvatarStringURL), completed: nil)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
+        
+        denyButton.addTarget(self, action: #selector(denyButtonPressed), for: .touchUpInside)
+        acceptButton.addTarget(self, action: #selector(acceptButtonPressed), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -26,8 +45,17 @@ class ChatRequestViewController: UIViewController {
         acceptButton.applyGradient(cornerRadius: 10)
     }
     
-
+    @objc private func denyButtonPressed(){
+        self.dismiss(animated: true) {
+            self.delegate?.removeWaitingChat(chat: self.chat)
+        }
+    }
     
+    @objc private func acceptButtonPressed(){
+        self.dismiss(animated: true) {
+            self.delegate?.changeToActive(chat: self.chat)
+        }
+    }
 
 }
 
@@ -103,7 +131,7 @@ struct ChatRequestViewControllerProvider: PreviewProvider {
     }
     
     struct ContainerView: UIViewControllerRepresentable {
-        let viewController = ChatRequestViewController()
+        let viewController = ChatRequestViewController(chat: MChat(friendUsername: "", friendAvatarStringURL: "", lastMessageContent: "", friendId: ""))
         
         func makeUIViewController(context: UIViewControllerRepresentableContext<ChatRequestViewControllerProvider.ContainerView>) -> ChatRequestViewController {
            viewController

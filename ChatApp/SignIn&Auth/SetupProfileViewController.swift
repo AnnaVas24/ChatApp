@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-
+import SDWebImage
 
 class SetupProfileViewController: UIViewController {
 
@@ -32,6 +32,10 @@ class SetupProfileViewController: UIViewController {
         if let username = currentUser.displayName {
             fullNameTF.text = username
         }
+        
+        if let photoURL = currentUser.photoURL {
+            imageView.circleImageView.sd_setImage(with: photoURL, completed: nil)
+        }
     }
     
     override func viewDidLoad() {
@@ -54,7 +58,7 @@ class SetupProfileViewController: UIViewController {
         FirestoreService.shared.saveProfileWith(id: currentUser.uid, email: currentUser.email!, username: fullNameTF.text, avatarImage: imageView.circleImageView.image, description: aboutMeTF.text, gender: genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)) { result in
             switch result {
             case .success(let mUser):
-                self.showAlert(title: "Success!", message: "Wish you a good comunication!") {
+                self.showAlert(title: "Success!", message: "Wish you good comunication!") {
                     let mainTabBar = MainTabBarController(currentUser: mUser)
                     mainTabBar.modalPresentationStyle = .fullScreen
                     self.present(mainTabBar, animated: true)
