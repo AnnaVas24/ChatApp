@@ -50,11 +50,12 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .mainWhite()
         setupSearchBar()
         setupCollectionView()
         createDataSource()
         reloadData()
+        
+        navigationItem.titleView?.tintColor = #colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1)
         
         waitingChatsListener = ListenerService.shared.waitingChatsObserve(chats: waitingChats, completion: { result in
             switch result {
@@ -96,7 +97,7 @@ class ListViewController: UIViewController {
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .mainWhite()
+        collectionView.backgroundColor = #colorLiteral(red: 1, green: 0.970276773, blue: 0.9639721513, alpha: 1)
         view.addSubview(collectionView)
         
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseID)

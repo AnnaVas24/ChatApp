@@ -44,12 +44,13 @@ class PeopleViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .mainWhite()
+        view.backgroundColor = #colorLiteral(red: 1, green: 0.9607962966, blue: 0.954231441, alpha: 1)
         setupSearchBar()
         setupCollectionView()
         createDataSource()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logOut))
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1)
         usersListener = ListenerService.shared.usersObserve(users: users, completion: { result in
             switch result {
             case .success(let users):
@@ -90,7 +91,7 @@ class PeopleViewController: UIViewController {
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .mainWhite()
+        collectionView.backgroundColor = #colorLiteral(red: 1, green: 0.970276773, blue: 0.9639721513, alpha: 1)
         view.addSubview(collectionView)
         
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseID)
