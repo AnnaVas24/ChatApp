@@ -44,6 +44,7 @@ class PeopleViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         view.backgroundColor = #colorLiteral(red: 1, green: 0.9607962966, blue: 0.954231441, alpha: 1)
         setupSearchBar()
         setupCollectionView()

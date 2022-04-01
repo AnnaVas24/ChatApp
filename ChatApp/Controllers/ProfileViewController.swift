@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         view.backgroundColor = .systemRed
         setupConstraints()
 

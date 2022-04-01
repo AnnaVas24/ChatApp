@@ -35,6 +35,7 @@ class ChatsViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         cofigureMessageInputBar()
         messagesCollectionView.backgroundColor = #colorLiteral(red: 1, green: 0.970276773, blue: 0.9639721513, alpha: 1)
     
