@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     let passwordLabel = UILabel(text: "Password")
     let needLabel = UILabel(text: "Need an account?")
     
-    let googleB = GIDSignInButton()
+    let googleButton = GIDSignInButton()
     
     let emailTF = OneLineTextFild(font: .arial20())
     let passwordTF = OneLineTextFild(font: .arial20())
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
     
-        googleB.addTarget(self, action: #selector(googleButtonPressed), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleButtonPressed), for: .touchUpInside)
     }
     
     @objc private func loginButtonPressed() {
@@ -86,9 +86,9 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     private func setupConstrains(){
         
-        googleB.style = .wide
+        googleButton.style = .wide
         
-        let loginWithView = ButtonFormView(label: loginWithLabel, button: googleB)
+        let loginWithView = ButtonFormView(label: loginWithLabel, button: googleButton)
         let emailStackView = UIStackView(arrangeSubviews: [emailLabel,emailTF], axis: .vertical, spacing: 0)
         let passwordStackView = UIStackView(arrangeSubviews: [passwordLabel, passwordTF], axis: .vertical, spacing: 0)
         loginButton.heightAnchor.constraint(equalToConstant: 60).isActive = true

@@ -40,6 +40,7 @@ class SetupProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         view.backgroundColor = .mainWhite()
         setupConstraints()
         goToChatsButton.addTarget(self, action: #selector(goToChats), for: .touchUpInside)

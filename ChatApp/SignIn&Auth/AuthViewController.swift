@@ -17,7 +17,7 @@ class AuthViewController: UIViewController {
 
   
     
-    let googleB = GIDSignInButton()
+    let googleButton = GIDSignInButton()
     
     let emailButton = UIButton(title: "Email", titleColor: .white, backgroundColor: .buttonBlack(), isShadow: false)
     let loginButton = UIButton(title: "Login", titleColor: .buttonRed(), backgroundColor: .white, isShadow: true)
@@ -35,7 +35,7 @@ class AuthViewController: UIViewController {
         signUpVC.delegate = self
         loginVC.delegate = self
         
-        googleB.addTarget(self, action: #selector(googlePressed), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googlePressed), for: .touchUpInside)
     }
    
     @objc private func emailButtonPressed() {
@@ -60,8 +60,8 @@ extension AuthViewController {
         let emailView = ButtonFormView(label: emailLabel, button: emailButton)
         let loginView = ButtonFormView(label: alreadyLabel, button: loginButton)
         
-        googleB.style = .wide
-        let googleButtonView = ButtonFormView(label: googleLabel, button: googleB)
+        googleButton.style = .wide
+        let googleButtonView = ButtonFormView(label: googleLabel, button: googleButton)
     
         let stackView = UIStackView(arrangeSubviews: [googleButtonView, emailView, loginView], axis: .vertical, spacing: 40)
         stackView.translatesAutoresizingMaskIntoConstraints = false
